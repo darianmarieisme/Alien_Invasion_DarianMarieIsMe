@@ -1,4 +1,8 @@
-
+'''
+Final Project: Alien Invasion (Milestone 1)
+Darian Marie Bruce
+04/12/2026
+This module manages bullets'''
 
 import pygame
 from bullet import Bullet

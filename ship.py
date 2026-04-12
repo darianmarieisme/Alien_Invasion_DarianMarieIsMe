@@ -1,3 +1,9 @@
+'''
+Final Project: Alien Invasion (Milestone 1)
+Darian Marie Bruce
+04/12/2026
+This module defines the ship class'''
+
 import pygame
 from typing import TYPE_CHECKING
 

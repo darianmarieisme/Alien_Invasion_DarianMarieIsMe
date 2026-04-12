@@ -1,4 +1,8 @@
-
+'''
+Final Project: Alien Invasion (Milestone 1)
+Darian Marie Bruce
+04/12/2026
+this module defines the bullet class'''
 
 import pygame
 from pygame.sprite import Sprite
