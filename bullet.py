@@ -14,25 +14,27 @@ if TYPE_CHECKING:
 class Bullet(Sprite):
     '''Represents a projectile fired by the ship that moves across the screen'''
     def __init__(self, game: 'AlienInvasion') -> None:
-        '''Initializes the bullet, sets its starting position and loads its image'''
+        '''Initializes the bullet, sets its starting position and loads its image, 
+        positioning on left side of screen'''
         super().__init__()
 
         self.screen = game.screen
         self.settings = game.settings
 
         self.image = pygame.image.load(self.settings.bullet_file)
+        self.image = pygame.transform.rotate(self.image, -90)
         self.image = pygame.transform.scale(self.image, 
-            (self.settings.bullet_w, self.settings.bullet_h)
+            (self.settings.bullet_h, self.settings.bullet_w)
             )
         
         self.rect = self.image.get_rect()
-        self.rect.midtop = game.ship.rect.midtop
-        self.y = float(self.rect.y)
+        self.rect.midleft = game.ship.rect.midright
+        self.x = float(self.rect.x)
 
     def update(self):
-        '''Updates the bullets position as it moves across the screen'''
-        self.y -= self.settings.bullet_speed
-        self.rect.y = self.y
+        '''Updates the bullets position as it moves across the screen towards the right'''
+        self.x += self.settings.bullet_speed
+        self.rect.x = self.x
 
     def draw_bullet(self) -> None:
         '''draws the bullet on the screen'''

@@ -27,9 +27,9 @@ class Arsenal:
         
     def _remove_bullets_offscreen(self) -> None:
         '''removes bullets that have left the visible screen to free up space
-        for new bullets'''
+        for new bullets, checking position of bullet to right barrier of screen'''
         for bullet in self.arsenal.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.right >= self.game.settings.screen_w:
                 self.arsenal.remove(bullet)
 
     def draw(self) -> None:

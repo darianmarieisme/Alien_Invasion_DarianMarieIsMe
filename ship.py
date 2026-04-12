@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from arsenal import Arsenal
 
 class Ship:
-    '''This class represents the player's ship'''
+    '''This class represents the player's ship and draws the ship starting on the center left of screen'''
     def __init__(self, game: "AlienInvasion", arsenal: 'Arsenal') -> None:
         '''Initializes the ship, loads its image, sets starting position'''
         self.game = game
