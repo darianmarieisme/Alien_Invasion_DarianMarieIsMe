@@ -12,7 +12,11 @@ from ship import Ship
 from arsenal import Arsenal
 
 class AlienInvasion:
+    """Main class that manages game initialization, game loop, and overall behavior
+    """
     def __init__ (self) -> None: 
+        '''Initializes the game, creates the scene, loads assets,
+        and sets up game objects'''
         pygame.init()
         self.settings = Settings()
 
@@ -36,7 +40,7 @@ class AlienInvasion:
 
 
     def run_game(self) -> None:
-        # Game Loop
+        '''This method contains the main loop that runs the game logic'''
 
         while self.running:
             self._check_events()
@@ -45,11 +49,14 @@ class AlienInvasion:
             self.clock.tick(self.settings.FPS)
 
     def _update_screen(self) -> None:
+        '''This method will redraw all game elements on the screen
+        and update the display'''
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         pygame.display.flip()
 
     def _check_events(self) -> None:
+        '''This method handles all user input events'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -61,6 +68,8 @@ class AlienInvasion:
                 self._check_keyup_events(event)
 
     def _check_keyup_events(self, event) -> None:
+        '''this method responds to key release events and stops ship
+        movement'''
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
@@ -68,6 +77,8 @@ class AlienInvasion:
 
 
     def _check_keydown_events(self, event) -> None:
+        '''this method responds to key press events and updates ship
+        movements and actions'''
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
@@ -83,5 +94,7 @@ class AlienInvasion:
             sys.exit()
 
 if __name__ == '__main__':
+    '''this is the main method that runs the logic from the game loop
+    (run_game)'''
     ai = AlienInvasion()
     ai.run_game()

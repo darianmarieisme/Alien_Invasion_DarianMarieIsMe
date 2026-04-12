@@ -12,8 +12,9 @@ if TYPE_CHECKING:
     from arsenal import Arsenal
 
 class Ship:
-
+    '''This class represents the player's ship'''
     def __init__(self, game: "AlienInvasion", arsenal: 'Arsenal') -> None:
+        '''Initializes the ship, loads its image, sets starting position'''
         self.game = game
         self.settings = game.settings
         self.screen = game.screen
@@ -33,7 +34,7 @@ class Ship:
         self.arsenal = arsenal
 
     def update(self):
-        # updating the position of the ship
+        '''updates the ship's position and handles movement and weapon updates'''
         self.arsenal.update_arsenal()
 
         temp_speed = self.settings.ship_speed
@@ -46,8 +47,11 @@ class Ship:
 
 
     def draw(self) -> None:
+        '''Draws the ship and its projectiles'''
         self.arsenal.draw()
         self.screen.blit(self.image, self.rect)
 
     def fire(self) -> bool:
+        '''attempts to fire bullet
+        returns: true or false staus of bullet success'''
         return self.arsenal.fire_bullet()

@@ -7,8 +7,10 @@ This is the settings'''
 from pathlib import Path
 
 class Settings:
+    '''Stores all configuration values for the game'''
     
     def __init__(self):
+        '''initializes all game settings'''
         self.name: str = "Alien Invasion"
         self.screen_w = 1200
         self.screen_h = 800
