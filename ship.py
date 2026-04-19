@@ -35,8 +35,10 @@ class Ship:
 
     def update(self):
         '''updates the ship's position and handles movement and weapon updates'''
+        self._update_ship_movement
         self.arsenal.update_arsenal()
 
+    def _update_ship_movement(self) -> None:
         temp_speed = self.settings.ship_speed
         if self.moving_right and self.rect.right < self.boundaries.right:
             self.x += temp_speed
