@@ -16,7 +16,7 @@ class Alien(Sprite):
     def __init__(self, fleet: 'AlienFleet', x: float, y: float) -> None:
         '''Initializes the bullet, sets its starting position and loads its image'''
         super().__init__()
-
+        self.fleet = fleet
         self.screen = fleet.game.screen
         self.boundaries = fleet.game.screen.get_rect()
         self.settings = fleet.game.settings
@@ -37,11 +37,11 @@ class Alien(Sprite):
         '''Updates the bullets position as it moves across the screen'''
         temp_speed = self.settings.fleet_speed
 
-        if self.check_edges():
-            self.settings.fleet_direction *= -1
-            self.y += self.settings.fleet_drop_speed
+        # if self.check_edges():
+            # self.settings.fleet_direction *= -1
+            # self.y += self.settings.fleet_drop_speed
 
-        self.x += temp_speed * self.settings.fleet_direction
+        self.x += temp_speed * self.fleet.fleet_direction
         self.rect.x = self.x
         self.rect.y = self.y
 
