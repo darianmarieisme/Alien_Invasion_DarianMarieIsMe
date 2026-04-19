@@ -35,7 +35,7 @@ class Ship:
 
     def update(self):
         '''updates the ship's position and handles movement and weapon updates'''
-        self._update_ship_movement
+        self._update_ship_movement()
         self.arsenal.update_arsenal()
 
     def _update_ship_movement(self) -> None:
