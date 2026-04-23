@@ -1,5 +1,5 @@
 '''
-Final Project: Alien Invasion (Participation Activity)
+Final Project: Alien Invasion (Milestone 1)
 Darian Marie Bruce
 04/12/2026
 The purpose of this milestone is to modify the base
