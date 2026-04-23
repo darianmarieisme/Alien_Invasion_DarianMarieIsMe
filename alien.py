@@ -5,6 +5,7 @@ Darian Marie Bruce
 this module defines the alien class'''
 
 import pygame
+import random
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 
@@ -31,12 +32,20 @@ class Alien(Sprite):
         self.rect.x = x
         self.rect.y = y
 
+        self.drift_direction = random.choice([-1, 1])
+
         self.y = float(self.rect.y)
         self.x = float(self.rect.x)
 
     def update(self):
         '''Updates the bullets position as it moves across the screen'''
         temp_speed = self.settings.fleet_speed
+        self.y += 0.2 * self.drift_direction
+        self.rect.y = self.y
+        if self.rect.top <= 0:
+            self.drift_direction = 1
+        elif self.rect.bottom >= self.boundaries.bottom:
+            self.drift_direction = -1
 
         # if self.check_edges():
             # self.settings.fleet_direction *= -1
@@ -47,7 +56,7 @@ class Alien(Sprite):
         self.rect.y = self.y
 
     def is_off_screen(self) -> bool:
-        return self.rect.right <= 0
+        return self.rect.left <= 0
 
     def draw_alien(self) -> None:
         '''draws the bullet on the screen'''
