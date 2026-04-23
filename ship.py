@@ -1,5 +1,5 @@
 '''
-Final Project: Alien Invasion (Milestone 1)
+Final Project: Alien Invasion (Milestone 2)
 Darian Marie Bruce
 04/12/2026
 This module defines the ship class'''
@@ -28,16 +28,21 @@ class Ship:
         
 
         self.rect = self.image.get_rect()
-        self.rect.midleft = self.boundaries.midleft
+        self._center_ship()
         self.moving_up = False
         self.moving_down = False
-        self.y = float(self.rect.y)
         self.arsenal = arsenal
+
+    def _center_ship(self):
+        self.rect.midleft = self.boundaries.midleft
+        self.y = float(self.rect.y)
 
     def update(self):
         '''updates the ship's position and handles movement and weapon updates'''
         self.arsenal.update_arsenal()
+        self._update_ship_movement()
 
+    def _update_ship_movement(self) -> None:
         temp_speed = self.settings.ship_speed
         if self.moving_up and self.rect.top > 0:
             self.y -= temp_speed
@@ -56,3 +61,9 @@ class Ship:
         '''attempts to fire bullet
         returns: true or false staus of bullet success'''
         return self.arsenal.fire_bullet()
+    
+    def check_collisions(self, other_group) -> bool:
+        if pygame.sprite.spritecollideany(self, other_group):
+            self._center_ship()
+            return True
+        return False
