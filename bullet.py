@@ -1,10 +1,11 @@
 '''
-Final Project: Alien Invasion (Milestone 1)
+Final Project: Alien Invasion (Milestone 2)
 Darian Marie Bruce
-04/12/2026
+04/23/2026
 this module defines the bullet class'''
 
 import pygame
+from settings import Settings
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 
@@ -18,18 +19,18 @@ class Bullet(Sprite):
         positioning on left side of screen'''
         super().__init__()
 
-        self.screen = game.screen
-        self.settings = game.settings
+        self.screen: AlienInvasion = game.screen
+        self.settings: Settings = game.settings
 
-        self.image = pygame.image.load(self.settings.bullet_file)
+        self.image: pygame.Surface = pygame.image.load(self.settings.bullet_file)
         self.image = pygame.transform.rotate(self.image, -90)
         self.image = pygame.transform.scale(self.image, 
             (self.settings.bullet_h, self.settings.bullet_w)
             )
         
-        self.rect = self.image.get_rect()
+        self.rect: pygame.Rect = self.image.get_rect()
         self.rect.midleft = game.ship.rect.midright
-        self.x = float(self.rect.x)
+        self.x: float = float(self.rect.x)
 
     def update(self):
         '''Updates the bullets position as it moves across the screen towards the right'''
