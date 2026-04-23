@@ -2,6 +2,7 @@
 '''
 
 import pygame
+import random
 from alien import Alien
 from typing import TYPE_CHECKING
 
@@ -47,7 +48,7 @@ class AlienFleet:
                 current_x = x_offset - alien_w * col
                 current_y = padding + row * spacing
 
-                if col % 2 == 0:
+                if col % 2 == 0 or random.random() < 0.2:
                     continue
 
                 self._create_alien(current_x, current_y)
@@ -79,13 +80,6 @@ class AlienFleet:
         new_alien = Alien(self, current_x, current_y)
 
         self.fleet.add(new_alien)
-
-    def _check_fleet_edge(self) -> None:
-        alien: Alien
-        for alien in self.fleet:
-            if alien.is_off_screen():
-                self.fleet.remove(alien)
-                break
 
     def _drop_alien_fleet(self) -> None:
         for alien in self.fleet:

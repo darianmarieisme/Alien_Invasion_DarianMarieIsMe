@@ -37,6 +37,8 @@ class Alien(Sprite):
         self.y = float(self.rect.y)
         self.x = float(self.rect.x)
 
+        self.speed = self.settings.fleet_speed * random.uniform(0.8, 1.3)
+
     def update(self):
         '''Updates the bullets position as it moves across the screen'''
         temp_speed = self.settings.fleet_speed
@@ -51,7 +53,7 @@ class Alien(Sprite):
             # self.settings.fleet_direction *= -1
             # self.y += self.settings.fleet_drop_speed
 
-        self.x -= temp_speed
+        self.x -= self.speed
         self.rect.x = self.x
         self.rect.y = self.y
 

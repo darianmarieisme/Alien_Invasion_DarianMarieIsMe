@@ -21,32 +21,32 @@ class AlienInvasion:
         '''Initializes the game, creates the scene, loads assets,
         and sets up game objects'''
         pygame.init()
-        self.settings = Settings()
-        self.game_stats = GameStats(self.settings.starting_ship_count)
+        self.settings: Settings = Settings()
+        self.game_stats: GameStats = GameStats(self.settings.starting_ship_count)
 
 
-        self.screen = pygame.display.set_mode(
+        self.screen: pygame.Surface = pygame.display.set_mode(
             (self.settings.screen_w, self.settings.screen_h))
         pygame.display.set_caption(self.settings.name)
 
-        self.bg = pygame.image.load(self.settings.bg_file)
+        self.bg: pygame.Surface  = pygame.image.load(self.settings.bg_file)
         self.bg = pygame.transform.scale(self.bg, 
             (self.settings.screen_w, self.settings.screen_h)
             )
 
-        self.running = True
-        self.clock = pygame.time.Clock()
+        self.running: bool  = True
+        self.clock: pygame.time.Clock  = pygame.time.Clock()
 
         pygame.mixer.init()
-        self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
+        self.laser_sound: pygame.mixer.Sound = pygame.mixer.Sound(self.settings.laser_sound)
         self.laser_sound.set_volume(0.7)
-        self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
+        self.impact_sound: pygame.mixer.Sound = pygame.mixer.Sound(self.settings.impact_sound)
         self.impact_sound.set_volume(0.7)
 
-        self.ship = Ship(self, Arsenal(self))
-        self.alien_fleet = AlienFleet(self)
+        self.ship: Ship = Ship(self, Arsenal(self))
+        self.alien_fleet: AlienFleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
-        self.game_active = True
+        self.game_active: bool = True
 
 
     def run_game(self) -> None:
@@ -87,7 +87,7 @@ class AlienInvasion:
             self._reset_level()
             sleep(0.5)
         else:
-            self.game_active = False
+            self.game_active: bool = False
 
     def _reset_level(self) -> None:
         self.ship.arsenal.arsenal.empty()
