@@ -92,7 +92,6 @@ class AlienFleet:
             alien.y += self.fleet_drop_speed  
 
     def update_fleet(self) -> None:
-        self._check_fleet_edge()
         self.fleet.update()
 
     def draw(self) -> None:
@@ -105,10 +104,11 @@ class AlienFleet:
     
     def check_fleet_bottom(self) -> bool:
         alien: Alien
-        for alien in self.fleet:
-            if alien.rect.bottom >= self.settings.screen_h:
-                return True
+        if not self.fleet:
             return False
+
+        leftmost = min(self.fleet, key=lambda alien: alien.rect.left)
+        return leftmost.rect.left <= 0
         
     def check_destroyed_status(self):
         return not self.fleet
