@@ -14,7 +14,7 @@ class AlienFleet:
         self.game = game
         self.settings = game.settings
         self.fleet = pygame.sprite.Group()
-        self.fleet_direction = self.settings.fleet_direction
+        # self.fleet_direction = self.settings.fleet_direction
         self.fleet_drop_speed = self.settings.fleet_drop_speed
 
         self.create_fleet()
@@ -33,20 +33,23 @@ class AlienFleet:
         self._create_rectangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
+        max_cols = 8
         for row in range(fleet_h):
-            for col in range(fleet_w):
-                current_x = alien_w * col + x_offset
+            for col in range(min(fleet_w, max_cols)):
+                current_x = x_offset - alien_w * col
                 current_y = alien_h * row + y_offset
+                
                 if col % 2 == 0 or row % 2 == 0:
                     continue
                 self._create_alien(current_x, current_y)
 
     def calculate_offsets(self, alien_w, alien_h, screen_w, fleet_w, fleet_h):
+        screen_h = self.settings.screen_h
         half_screen = self.settings.screen_h//2
         fleet_horizontal_space = fleet_w * alien_w
         fleet_vertical_space = fleet_h * alien_h
-        x_offset = int((screen_w-fleet_horizontal_space)//2)
-        y_offset = int((half_screen-fleet_vertical_space)//2)
+        x_offset = screen_w
+        y_offset = int((screen_h-fleet_vertical_space)//2)
         return x_offset,y_offset
 
     def calculate_fleet_size(self, alien_w, screen_w, alien_h, screen_h) -> int:
@@ -72,9 +75,8 @@ class AlienFleet:
     def _check_fleet_edge(self) -> None:
         alien: Alien
         for alien in self.fleet:
-            if alien.check_edges():
-                self._drop_alien_fleet()
-                self.fleet_direction *= -1
+            if alien.is_off_screen():
+                self.fleet.remove(alien)
                 break
 
     def _drop_alien_fleet(self) -> None:

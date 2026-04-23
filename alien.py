@@ -25,6 +25,7 @@ class Alien(Sprite):
         self.image = pygame.transform.scale(self.image, 
             (self.settings.alien_w, self.settings.alien_h)
             )
+        self.image = pygame.transform.rotate(self.image, -90)
         
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -41,12 +42,12 @@ class Alien(Sprite):
             # self.settings.fleet_direction *= -1
             # self.y += self.settings.fleet_drop_speed
 
-        self.x += temp_speed * self.fleet.fleet_direction
+        self.x -= temp_speed
         self.rect.x = self.x
         self.rect.y = self.y
 
-    def check_edges(self) -> bool:
-        return (self.rect.right >= self.boundaries.right or self.rect.left <= self.boundaries.left)
+    def is_off_screen(self) -> bool:
+        return self.rect.right <= 0
 
     def draw_alien(self) -> None:
         '''draws the bullet on the screen'''
