@@ -1,10 +1,11 @@
 '''
-Final Project: Alien Invasion (Milestone 1)
+Final Project: Alien Invasion (Milestone 2)
 Darian Marie Bruce
-04/12/2026
+04/23/2026
 This module manages bullets'''
 
 import pygame
+from settings import Settings
 from bullet import Bullet
 from typing import TYPE_CHECKING
 
@@ -16,9 +17,9 @@ class Arsenal:
     def __init__(self, game: "AlienInvasion"):
         '''initializes the arsenal, linking it to the game and creating a group to store
         bullets'''
-        self.game = game
-        self.settings = game.settings
-        self.arsenal = pygame.sprite.Group()
+        self.game: AlienInvasion = game
+        self.settings: Settings = game.settings
+        self.arsenal: pygame.sprite.Group = pygame.sprite.Group()
 
     def update_arsenal(self) -> None:
         '''updates all bullets' positions and removes any that have moved offscreen'''
@@ -41,7 +42,7 @@ class Arsenal:
         '''Creates and adds a new bullet if under the limit of on screen bullets
         returns: true or false based on condition of on screen bullets'''
         if len(self.arsenal) < self.settings.bullet_amount:
-            new_bullet = Bullet(self.game)
+            new_bullet: Bullet = Bullet(self.game)
             self.arsenal.add(new_bullet)
             return True
         return False
