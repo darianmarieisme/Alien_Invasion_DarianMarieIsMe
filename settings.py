@@ -1,8 +1,8 @@
 '''
-Final Project: Alien Invasion (Milestone 1)
+Final Project: Alien Invasion (Milestone 2)
 Darian Marie Bruce
-04/12/2026
-This is the settings'''
+04/23/2026
+This is the settings used across the project'''
 
 from pathlib import Path
 
@@ -11,29 +11,38 @@ class Settings:
     
     def __init__(self):
         '''initializes all game settings'''
+
+        # general
+
         self.name: str = "Alien Invasion"
-        self.screen_w = 1200
-        self.screen_h = 800
-        self.FPS = 60
-        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
+        self.screen_w: int = 1200
+        self.screen_h: int = 800
+        self.FPS: int = 60
+        self.bg_file: Path = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
 
-        self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
-        self.ship_w = 40
-        self.ship_h = 60
-        self.ship_speed = 5
-        self.starting_ship_count = 3
+        # Ship
 
-        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
-        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
-        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'ImpactSound.mp3'
-        self.bullet_speed = 7
-        self.bullet_w = 25
-        self.bullet_h = 80
-        self.bullet_amount = 5
+        self.ship_file: Path = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
+        self.ship_w: int = 40
+        self.ship_h: int = 60
+        self.ship_speed: int = 5
+        self.starting_ship_count: int = 3
 
-        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
-        self.alien_w = 40
-        self.alien_h = 40
-        self.fleet_speed = 0.5
-        self.fleet_direction = 1
-        self.fleet_drop_speed = 40
+        # Bullet
+
+        self.bullet_file: Path = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
+        self.laser_sound: Path = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
+        self.impact_sound: Path = Path.cwd() / 'Assets' / 'sound' / 'ImpactSound.mp3'
+        self.bullet_speed: float = 7
+        self.bullet_w: int = 25
+        self.bullet_h: int = 80
+        self.bullet_amount: int = 5
+
+        # Alien
+
+        self.alien_file: Path = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
+        self.alien_w: int = 40
+        self.alien_h: int = 40
+        self.fleet_speed: float = 0.5
+        self.fleet_direction: int = 1
+        self.fleet_drop_speed: int = 40
