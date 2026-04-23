@@ -1,7 +1,7 @@
 '''
 Final Project: Alien Invasion (Milestone 2)
 Darian Marie Bruce
-04/12/2026
+04/23/2026
 The purpose of this milestone is to modify the base
 game to change the ship's orientation and movement'''
 
