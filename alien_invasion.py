@@ -90,7 +90,7 @@ class AlienInvasion:
             self.game_stats.update_level()
             # update HUD view
 
-    def _check_game_status(self):
+    def _check_game_status(self) -> None:
         if self.game_stats.ships_left  > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
@@ -104,7 +104,7 @@ class AlienInvasion:
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
 
-    def restart_game(self):
+    def restart_game(self) -> None:
        # setting up dynamic Settings
        self.settings.initialize_dynamic_settings
        # reset game stats
@@ -145,7 +145,7 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 self._check_button_clicked()
 
-    def _check_button_clicked(self):
+    def _check_button_clicked(self) -> None:
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()
