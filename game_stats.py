@@ -1,4 +1,9 @@
-''''''
+'''
+Final Project: Alien Invasion (Participation Activity)
+Darian Marie Bruce
+04/25/2026
+This module deals with the level and scores of the game
+'''
 
 #volatile game stats
 # from pathlib import Path
@@ -12,13 +17,13 @@ class GameStats():
 
     def __init__(self, game: 'AlienInvasion') -> None:
         self.game = game
-        self.setting = game.settings
+        self.settings = game.settings
         self.max_score = 0
         self.init_saved_scores()
         self.reset_stats()
 
     def init_saved_scores(self) -> None:
-        self.path = self.setting.scores_file
+        self.path = self.settings.scores_file
         if self.path.exists() and self.path.stat.__sizeof__() > 50:
             contents = self.path.read_text()
             scores = json.loads(contents)
@@ -40,7 +45,7 @@ class GameStats():
             print(f"File Not Found: {e.value}")
 
     def reset_stats(self) -> None:
-        self.ships_left = self.setting.starting_ship_count
+        self.ships_left = self.settings.starting_ship_count
         self.score = 0
         self.level = 1
 
@@ -55,6 +60,7 @@ class GameStats():
     def _update_max_score(self) -> None:
         if self.score > self.max_score:
             self.max_score = self.score
+            self.save_scores()
 
       #  print(f'Max: {self.max_score}')
 
@@ -67,9 +73,9 @@ class GameStats():
 
     def _update_score(self, collisions) -> None:
         for alien in collisions.values():
-            self.score += self.setting.alien_points
+            self.score += self.settings.alien_points
         # print(f'Basic: {self.score}')
 
     def update_level(self) -> None:
-        self.level =+ 1
+        self.level += 1
         # print(self.level)
