@@ -86,7 +86,7 @@ class AlienInvasion:
             self.game_stats.update(collisions)
             self.HUD.update_scores()
 
-        if self.alien_fleet.check_destroyed_status()
+        if self.alien_fleet.check_destroyed_status():
             self._reset_level()
             self.settings.increase_difficulty()
             # update game stats level
